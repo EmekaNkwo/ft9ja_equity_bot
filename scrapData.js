@@ -20,8 +20,11 @@ const scrapData = async () => {
     const context = await browser.newContext();
     const page = await context.newPage();
 
-   const result = await page.goto("https://trade.mql5.com/trade?servers=");
+    const result = await page.goto("https://trade.mql5.com/trade?servers=.");
+    console.log("Done Loading");
 
+    //wait for page navigation in playwright
+    await page.waitForNavigation();
     await page.type("#login", process.env.LOGIN);
     await page.type("#password", process.env.PASSWORD);
     await page.fill("#server", process.env.SERVER);
